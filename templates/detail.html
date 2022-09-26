@@ -1,0 +1,55 @@
+
+
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="row mt-5 justify-content-around g-5">
+        <div class="col-md-6">
+            <div class="card w-75" >
+                {% if post.photo %}
+                    <img src="{{ post.photo.url }}" class="card-img-top" alt="{{ post.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="font-monospace text-center">{{ post.title }}</h1>
+                    <p class="card-text font-monospace">{{ post.body|safe }} <strong><a href="{% url 'postlar' %}">Go Back</a></strong></p>
+                </div>
+            
+                <div class="card-footer p-3 ">
+                    <a href="{% url 'create' %}" class="font-monospace mb-3 btn btn-dark">Create post</a>
+                    {% if request.user == post.author %}
+                    <a href="{% url 'update' post.pk %}" class="font-monospace mb-3 btn btn-info">Update post</a>
+                    <a href="{% url 'delete' post.pk %}" class="font-monospace mb-3 btn btn-warning">Delete post</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <div class="card-body">
+                    {% if post.comments.all %}
+
+                
+                  <h5 class="card-title font-monospace text-center mb-5">All Comments</h5>
+                  {% for comment in post.comments.all %}  
+                    <strong class="text-warning">by {{ comment.author.email }}</strong>
+                    <p class="card-text font-monospace">{{ comment.comment }}.</p>
+                   {% endfor %}
+                   
+                  <a href="{% url 'create-comment' post.pk %}" class="btn btn-info">Leave comment here</a>
+                
+                  {% else %}
+                    <h5 class="card-title font-monospace text-center mb-5">No Comment Yet</h5>
+                    <a href="{% url 'create-comment' post.pk %}" class="btn btn-dark">Leave comment here</a>
+
+
+                  {% endif %}
+
+
+                </div>
+              </div>
+        </div>
+    </div>
+    
+{% endblock content %}

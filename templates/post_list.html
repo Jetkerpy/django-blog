@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="mt-5">
+        {% for post in posts %}
+        <div class="card mb-5 "  >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{ post.photo.url }}" class="img-fluid rounded-start" alt="{{ post.title }}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title font-monospace text-center mb-5">{{ post.title }}</h5>
+                  <p class="card-text font-monospace">{{ post.summary }}.
+                     <strong><a href="{% url 'detail' post.pk %}">Toliq oqiw ...</a></strong>
+                  </p>
+                  <p class="font-monospace">Author: <strong class="text-warning">{{ post.author|title }}</strong></p>
+                  <p class="card-text font-monospace"><small class="text-muted">{{ post.date }}</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

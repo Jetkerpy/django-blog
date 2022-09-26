@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+    <div class="mt-5">
+        <h4 class="font-monospace">Create post here...</h4>
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.media }}
+            {{ form|crispy }}
+            <button class="btn btn-outline-info btn-lg font-monospace" type="submit">Create</button>
+        </form>
+    </div>
+
+{% endblock content %}

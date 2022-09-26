@@ -1,0 +1,55 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <div class="card shadow p-3 mb-5 bg-body rounded opacity-0.5 mt-5" style="max-width: 600px;">
+        <div class="">
+            <h5 class="card-title font-monospace text-center mb-4">Assalawmu Aleykum hu'rmetli {{ user.username|title }}!</h5>
+            <p class="card-text font-monospace">Xosh kelipsiz saytimizg'a bul site har qiyli post boliwi mumkin, bilmeymen sol basimdi qatirmay tomendegi postdi koreber Awzina siyeyin.</p>
+            
+                <p class="card-text font-monospace">
+                    <a href="{% url 'postlar' %}">Postlardi koriw</a>
+                </p>
+        </div>
+    </div>
+            {% else %}
+            <div class="card shadow p-3 mb-5 bg-body rounded opacity-0.5 mt-5" style="max-width: 600px;">
+                <h5 class="card-title font-monospace text-center mb-4">Assalawmu Aleykum!</h5>
+                <p class="card-text font-monospace">Xosh kelipsiz siz Loginnen o'tiwin'izdi soranaman ha'm tomendegi knopkani basip qagiydalar menen tanisip shig'in'</p>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary font-monospace" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Tanisiw
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title font-monospace" id="exampleModalLabel">Keshiresiz to'mendegi qag'iydani oqip shigin'!!.</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body ">
+                            <p class="font-monospace">
+                                Woo-hoo Postlardi koriw ushin a'wele siz registration otiwin'iz kerek boladi,eger o'tken bolsan'iz loginnen o'tin'iz please..
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'login' %}"  class="font-monospace btn btn-info text-white">Login here</a>
+                        <a href="{% url 'register' %}"  class="font-monospace btn btn-primary">Register here</a>
+                        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endif %}
+        
+   
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="mt-5">
+        <h4 class="font-monospace">Delete post here...</h4>
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            <p class="font-monospace">Are you sure Delete this - <strong class="text-danger">{{ post.title }}</strong><br>
+            If you don't want <strong class="font-monospace"><a href="{% url 'detail' post.pk %}">Go Back</a></strong>
+            </p>
+            <button class="btn btn-outline-danger btn-lg font-monospace" type="submit">Yea sure..</button>
+        </form>
+    </div>
+
+{% endblock content %}
